@@ -1,10 +1,51 @@
 import ttkbootstrap as ttk
-from ttkbootstrap.constants import *
 
-# def create_gui():
-#     # Create the main application window
-#     root = ttk.Window(themename="vapor")
-#     root.title("TTKBootstrap Example")
+def login_gui_screen():
+    
+    # Create the main application window
+    root = ttk.Window(themename="vapor")
+    root.title("Login Screen")  # Set the screen name
+    root.geometry("400x300")    # Set the screen geometry (width x height)
+
+    # Start the application
+    root.mainloop()
+
+if __name__ == "__main__":
+    login_gui_screen()
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    # def on_button_click():
+#     selected_items = listbox.curselection()
+#     selected_texts = [listbox.get(i) for i in selected_items]
+#     print("Selected items:", selected_texts)
 
 #     # Create and pack a label
 #     label = ttk.Label(root, text="This is a Label", font=("Helvetica", 16))
@@ -33,14 +74,3 @@ from ttkbootstrap.constants import *
 #     # Add items to the listbox
 #     for item in ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"]:
 #         listbox.insert(END, item)
-
-#     # Start the application
-#     root.mainloop()
-
-# def on_button_click():
-#     selected_items = listbox.curselection()
-#     selected_texts = [listbox.get(i) for i in selected_items]
-#     print("Selected items:", selected_texts)
-
-# if __name__ == "__main__":
-#     create_gui()
