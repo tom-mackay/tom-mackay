@@ -9,31 +9,43 @@ class LoginScreen(ttk.Frame):
         #! Screen Setup
         self.main_login_screen = master
         self.main_login_screen.title("Initialize User")
-        self.main_login_screen.geometry("600x230") #^ HxW
-
-        #! Login Screen Frame
-        self.login_screen_frame = ttk.Frame(self, relief="solid", borderwidth=2)
-        self.login_screen_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
-
+        
+        #! Get screen width and height
+        screen_width = self.main_login_screen.winfo_screenwidth()
+        screen_height = self.main_login_screen.winfo_screenheight()
+        #! Calculate x and y positions for the window to be centered
+        x = (screen_width - 600) // 2  # 600 is the window width
+        y = (screen_height - 230) // 2  # 230 is the window height
+        #! Set the window position
+        #self.main_login_screen.geometry(f"600x230+{x}+{y}")
+        self.main_login_screen.geometry("600x230") #^ WidthxHeight
+        self.main_login_screen.resizable(False, False) 
+        self.pack()
+        #self.grid(row=0, column=0) #& Review another time
+        
         #! Fonts
         self.title_font = ("Helvetica", 16)
         self.input_font = ("Helvetica", 12)
-    
+ 
+        #! Create a Login Canvas widget
+        self.login_canvas = tk.Canvas(self)
+        self.login_canvas.pack(fill=tk.BOTH, expand=True)
+        
         # Spacer
-        self.spacer = ttk.Label(self, text="")
-        self.spacer.grid(row=0, column=0)
+        self.spacer = ttk.Label(self.login_canvas, text="")
+        self.spacer.pack()
 
         #! Login Title Label
-        self.login_title_lbl = ttk.Label(self, text="Welcome PETTY Fool", font=self.title_font)
-        self.login_title_lbl.grid(row=1, column=0)
+        self.login_title_lbl = ttk.Label(self.login_canvas, text="Welcome PETTY Fool", font=self.title_font)
+        self.login_title_lbl.pack(anchor=tk.CENTER)
         
         # Spacer
-        self.spacer2 = ttk.Label(self, text="")
-        self.spacer2.grid(row=2, column=0)
+        self.spacer2 = ttk.Label(self.login_canvas, text="")
+        self.spacer2.pack()
         
         #! Main Login Frame
-        self.login_frame = self.login_frame = ttk.Frame(self)
-        self.login_frame.grid(row=3, column=0)
+        self.login_frame = ttk.Frame(self.login_canvas)
+        self.login_frame.pack(anchor=tk.CENTER)
         
         #! Username Input and Label
         self.username_lbl = ttk.Label(self.login_frame, text="Username:", font=self.input_font)
@@ -46,27 +58,27 @@ class LoginScreen(ttk.Frame):
         #! Password Input and Label
         self.password_lbl = ttk.Label(self.login_frame, text="Password:", font=self.input_font)
         self.password_lbl.grid(padx=5, row=2, column=0)
-        self.password_input = ttk.Entry(self.login_frame, font=self.input_font)
+        self.password_input = ttk.Entry(self.login_frame, font=self.input_font, show="*")
         self.password_input.grid(padx=5, row=2, column=1)
         
         # Spacer
-        self.spacer4 = ttk.Label(self, text="")
-        self.spacer4.grid(row=4, column=0)
+        self.spacer4 = ttk.Label(self.login_canvas, text="")
+        self.spacer4.pack()
         
         #! Frame for Buttons
-        self.login_buttons_frame = ttk.Frame(self)
-        self.login_buttons_frame.grid(row=5, column=0)
+        self.login_buttons_frame = ttk.Frame(self.login_canvas)
+        self.login_buttons_frame.pack(anchor=tk.CENTER)
         #! Login Button
         self.login_button = ttk.Button(self.login_buttons_frame, text="Login", command=self.login_action, takefocus=False, style='Primary.TButton')
-        self.login_button.grid(padx=20, row=0, column=0)
+        self.login_button.grid(padx=20, row=0, column=1)
         #! Info Button
         self.logininfo_button = ttk.Button(self.login_buttons_frame, text="Info", command=self.info_action, takefocus=False, style='Secondary.TButton')
-        self.logininfo_button.grid(padx=20, row=0, column=2)
-        
-        # # Spacer
-        # self.spacer5 = ttk.Label(self, text="")
-        # self.spacer5.grid(row=7, column=4)
+        self.logininfo_button.grid(padx=20, row=0, column=0)
 
+        #! Signup Button
+        # self.signup_button = ttk.Button(self.login_canvas, text="Sign Up", takefocus=True, style='info.Link.TButton')
+             
+        
 
 
 
@@ -91,9 +103,6 @@ if __name__ == "__main__":
     style.theme_use("vapor")  # Set the theme to "vapor"
     
     app = LoginScreen(master=root)
-    app.grid(row=0, column=0, sticky="nsew")  # Grid the main application frame
-    root.grid_rowconfigure(0, weight=1)
-    root.grid_columnconfigure(0, weight=1)
     app.mainloop()
     
     

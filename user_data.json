@@ -1,0 +1,16 @@
+{
+    "jalavuk": {
+        "user_fname": "James",
+        "user_lname": "Alavuk",
+        "password": "devcomp1",
+        "permissions": "developer"
+    },
+
+    "tkupa": {
+        "user_fname": "Tomakai",
+        "user_lname": "Alavuk",
+        "password": "devcomp2",
+        "permissions": "developer"
+    }
+   
+}
