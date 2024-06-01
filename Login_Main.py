@@ -42,7 +42,7 @@ class LoginScreen(ttk.Frame):
 
 if __name__ == "__main__":
     root = ttk.Window()
-    app = LoginScreen(master=root)
+    app = LoginScreen(loginmaster=root)
     app.mainloop()
     
     
