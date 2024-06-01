@@ -1,54 +1,57 @@
+import tkinter as tk
 import ttkbootstrap as ttk
 
-
-#! LoginScreen 
 class LoginScreen(ttk.Frame):
-    def __init__(self, loginmaster=None):
-        super().__init__(loginmaster, themename="vapor")
+    def __init__(self, master=None):
+        super().__init__(master)
         
-        self.login_screen = loginmaster
-        self.login_screen.title("Initialize User")  # Set the screen name
-        self.login_screen.geometry("600x600")    # Set the screen geometry (width x height)
+        #! Screen Setup
+        self.main_login_screen = master
+        self.main_login_screen.title("Initialize User")
+        self.main_login_screen.geometry("600x600")
         self.pack()
 
-        #! Fonts Variables
+        #! Fonts
         self.title_font = ("Helvetica", 16)
+    
 
-        #! Create a spacer (separator)
+        
+        
+        # Spacer
         self.spacer = ttk.Separator(self, orient="horizontal")
-        self.spacer.pack(fill="x", pady=10)  # Add padding around the spacer
+        self.spacer.pack(fill="x", pady=10)
 
-        #! Create Title Label
+        #! Login Title Label
         self.login_title_lbl = ttk.Label(self, text="Welcome Petty Fool", font=self.title_font)
         self.login_title_lbl.pack(pady=10)
         
-        #? Add spacer
-        self.spacer2 =ttk.Separator(self, orient="horizontal")
-        self.spacer2.pack(fill="x", pady=10) # Need to check this doesn't clash or overwrite due to same stated fill, pady
+        # Spacer
+        self.spacer2 = ttk.Separator(self, orient="horizontal")
+        self.spacer2.pack(fill="x", pady=10)
         
-        #? Add BUtton Named Login
-        self.login_button = ttk.Button(self, text="Login", command=self.login_action)
-        self.login_button.pack(pady=10)
+        #! Login Button
+        self.login_button = ttk.Button(self, text="Login", command=self.login_action, takefocus=False, style='Primary.TButton')
+        self.login_button.pack(side="right", pady=10)
         
-        #? Add Button Named Info
-        self.logininfo_button = ttk.Button(self, text="Info", command=self.info_action)
-        self.logininfo_button.pack(pady=10) ## Can't fucking test anything not sure why computer keeps so no idea if any of previous three thigns work
-        #When using the python login_main.py it keeps flagging 'master' as unexpected argument but I do have current ttkbootstrap installed and restarted from CMD > (dayzero)> code. 
-        
+        #! Info Button
+        self.logininfo_button = ttk.Button(self, text="Info", command=self.info_action, takefocus=False, style='Secondary.TButton')
+        self.logininfo_button.pack(side="left", padx=10, pady=10)
 
+    def login_action(self):
+        # Define the action to be taken when the login button is clicked
+        pass
 
-
-
+    def info_action(self):
+        # Define the action to be taken when the info button is clicked
+        pass
 
 if __name__ == "__main__":
-    root = ttk.Window()
-    app = LoginScreen(loginmaster=root)
+    root = tk.Tk()
+    style = ttk.Style()
+    style.theme_use("vapor")  # Set the theme to "vapor"
+    
+    app = LoginScreen(master=root)
     app.mainloop()
-    
-    
-    
-    
-    
     
     
     
