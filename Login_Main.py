@@ -1,10 +1,14 @@
 import tkinter as tk
 import ttkbootstrap as ttk
+import os
 import logging
 
 class LoginScreen(ttk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
+        
+        self.relative_path = os.path.abspath(__file__)
+        print(self.relative_path)
         
         #! Screen Setup
         self.main_login_screen = master
@@ -75,20 +79,9 @@ class LoginScreen(ttk.Frame):
         self.logininfo_button = ttk.Button(self.login_buttons_frame, text="Info", command=self.info_action, takefocus=False, style='Secondary.TButton')
         self.logininfo_button.grid(padx=20, row=0, column=0)
 
-        #! Signup Button
-        # self.signup_button = ttk.Button(self.login_canvas, text="Sign Up", takefocus=True, style='info.Link.TButton')
+        #& Signup Button
+        #& self.signup_button = ttk.Button(self.login_canvas, text="Sign Up", takefocus=True, style='info.Link.TButton')
              
-        
-
-
-
-
-
-
-
-
-
-
     def login_action(self):
         # Define the action to be taken when the login button is clicked
         pass
@@ -116,35 +109,6 @@ if __name__ == "__main__":
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    # def on_button_click():
-#     selected_items = listbox.curselection()
-#     selected_texts = [listbox.get(i) for i in selected_items]
-#     print("Selected items:", selected_texts)
-
-
-
-#     # Create and pack a button
-#     button = ttk.Button(root, text="Click Me", command=on_button_click, bootstyle=PRIMARY)
-#     button.pack(pady=10)
-
-
-
-
-
-
-
-
 
 # Listbox Details
 #     # Create and pack a listbox with a scrollbar
