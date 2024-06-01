@@ -21,6 +21,12 @@ class LoginScreen(ttk.Frame):
         #! Create Title Label
         self.login_title_lbl = ttk.Label(self, text="Welcome Petty Fool", font=self.title_font)
         self.login_title_lbl.pack(pady=10)
+        
+        # Add spacer
+        
+        # Add BUtton Named Login
+        
+        # Add Button Named Info
 
 
 
