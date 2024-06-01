@@ -27,8 +27,14 @@ class LoginScreen(ttk.Frame):
         self.spacer2.pack(fill="x", pady=10) # Need to check this doesn't clash or overwrite due to same stated fill, pady
         
         #? Add BUtton Named Login
+        self.login_button = ttk.Button(self, text="Login", command=self.login_action)
+        self.login_button.pack(pady=10)
         
         #? Add Button Named Info
+        self.logininfo_button = ttk.Button(self, text="Info", command=self.info_action)
+        self.logininfo_button.pack(pady=10) ## Can't fucking test anything not sure why computer keeps so no idea if any of previous three thigns work
+        #When using the python login_main.py it keeps flagging 'master' as unexpected argument but I do have current ttkbootstrap installed and restarted from CMD > (dayzero)> code. 
+        
 
 
 
