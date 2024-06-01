@@ -2,6 +2,7 @@ import tkinter as tk
 import ttkbootstrap as ttk
 import os
 import logging
+from Login_Validate import validate_login_func
 
 class LoginScreen(ttk.Frame):
     def __init__(self, master=None):
@@ -82,19 +83,43 @@ class LoginScreen(ttk.Frame):
         #& Signup Button
         #& self.signup_button = ttk.Button(self.login_canvas, text="Sign Up", takefocus=True, style='info.Link.TButton')
              
+             
+             
+             
+             
+             
+             
+             
+             
     def login_action(self):
-        # Define the action to be taken when the login button is clicked
-        pass
+        
+        self.user_input_value = self.username_input.get()
+        #print(self.user_input_value)
+        self.password_input_value = self.password_input.get()
+        #print(self.password_input_value)
+        validation_status = validate_login_func(self.user_input_value, self.password_input_value)
+        #print(login_validation_status)
+        
+        if validation_status:
+            print("Logging Successful")
+        else:
+            print("Login Failed, Check Credentials")
+
 
     def info_action(self):
         # Define the action to be taken when the info button is clicked
         pass
 
+
+
+
+
+
+
 if __name__ == "__main__":
     root = tk.Tk()
     style = ttk.Style()
-    style.theme_use("vapor")  # Set the theme to "vapor"
-    
+    style.theme_use("vapor")  # Set the theme to "vapor"    
     app = LoginScreen(master=root)
     app.mainloop()
     
