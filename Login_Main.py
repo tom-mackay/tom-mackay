@@ -22,11 +22,13 @@ class LoginScreen(ttk.Frame):
         self.login_title_lbl = ttk.Label(self, text="Welcome Petty Fool", font=self.title_font)
         self.login_title_lbl.pack(pady=10)
         
-        # Add spacer
+        #? Add spacer
+        self.spacer2 =ttk.Separator(self, orient="horizontal")
+        self.spacer2.pack(fill="x", pady=10) # Need to check this doesn't clash or overwrite due to same stated fill, pady output
         
-        # Add BUtton Named Login
+        #? Add BUtton Named Login
         
-        # Add Button Named Info
+        #? Add Button Named Info
 
 
 
