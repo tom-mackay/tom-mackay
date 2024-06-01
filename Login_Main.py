@@ -24,7 +24,7 @@ class LoginScreen(ttk.Frame):
         
         #? Add spacer
         self.spacer2 =ttk.Separator(self, orient="horizontal")
-        self.spacer2.pack(fill="x", pady=10) # Need to check this doesn't clash or overwrite due to same stated fill, pady output
+        self.spacer2.pack(fill="x", pady=10) # Need to check this doesn't clash or overwrite due to same stated fill, pady
         
         #? Add BUtton Named Login
         
