@@ -1,7 +1,9 @@
 import tkinter as tk
 import ttkbootstrap as ttk
+import sys
 import os
 import logging
+import subprocess
 from Login_Validate import validate_login_func
 
 class LoginScreen(ttk.Frame):
@@ -79,9 +81,6 @@ class LoginScreen(ttk.Frame):
         #! Info Button
         self.logininfo_button = ttk.Button(self.login_buttons_frame, text="Info", command=self.info_action, takefocus=False, style='Secondary.TButton')
         self.logininfo_button.grid(padx=20, row=0, column=0)
-
-        #& Signup Button
-        #& self.signup_button = ttk.Button(self.login_canvas, text="Sign Up", takefocus=True, style='info.Link.TButton')
              
              
              
@@ -102,6 +101,8 @@ class LoginScreen(ttk.Frame):
         
         if validation_status:
             print("Logging Successful")
+            self.launch_pyqt5()
+            
         else:
             print("Login Failed, Check Credentials")
 
@@ -109,6 +110,12 @@ class LoginScreen(ttk.Frame):
     def info_action(self):
         # Define the action to be taken when the info button is clicked
         pass
+    
+    def launch_pyqt5(self):
+        #! Close the Tkinter window
+        root.destroy()  
+        #! Run the PyQt5 application
+        subprocess.Popen([sys.executable, 'app_launcher/pygame_setup.py'])
 
 
 
