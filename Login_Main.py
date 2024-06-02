@@ -120,9 +120,19 @@ class LoginScreen(ttk.Frame):
         #print(login_validation_status)
         
         if validation_status:
-            print("Logging Successful")
+            print("Login Successful")
         else:
             print("Login Failed, Check Credentials")
+
+
+
+
+
+
+
+
+
+
 
 
     def info_action(self):
