@@ -88,16 +88,18 @@ class LoginScreen(ttk.Frame):
         self.signup_button_frame = ttk.Frame(self.main_login_screen)
         self.signup_button_frame.pack(anchor="se")          #? Aight so turns out this anchor uses cardinal directions fyi 
 
-
-
         #& Signup Button
-        self.signup_button = ttk.Button(self.signup_button_frame, text="Sign Up", takefocus=False, style='info.Link.TButton')
-        self.signup_button.grid(padx=0, row=0, column=0)
+        self.signup_button = ttk.Button(self.signup_button_frame, text="¿ Que, no bitches ?", takefocus=False, style='info.Link.TButton')
+        self.signup_button.grid(padx=0, pady=0, row=1, column=0)
 
         self.signup_lbl = ttk.Label(self.signup_button_frame, text="¿ Que, no bitches ?", takefocus=False)
-        self.signup_lbl.grid(padx=0, row=0, column=0)   
+        self.signup_lbl.grid(padx=0, pady=0, row=1, column=0)   
 
- # Spacer
+        # Spacer
+        self.spacer6 = ttk.Label(self.main_login_screen, text="")
+        self.spacer6.pack(anchor="se", padx=0, pady=10)
+
+         # Spacer
         #& self.signup_button = ttk.Button(self.login_canvas, text="Sign Up", takefocus=True, style='info.Link.TButton')
              
              
