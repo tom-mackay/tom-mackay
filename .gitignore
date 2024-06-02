@@ -1,2 +1,11 @@
+
+# Files to ignore
+Login_SCYE1.py
+Login_UPE1.py
+
+# JSONs to Ignore
+scye1_config.json
+
+# Folders to Ignore 
 day_zero_env/
 system_logs/

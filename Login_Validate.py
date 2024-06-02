@@ -10,7 +10,7 @@ def validate_login_func(username_input, password_input):
         with open('user_data.json', 'r') as user_data_file: #& Change the name at some point
             user_dict = json.load(user_data_file)
 
-
+        
 
 
 
@@ -30,7 +30,7 @@ def validate_login_func(username_input, password_input):
             #& This spot here has quite of a lot of intersting possibility as a deterrent
             return False
 
-        #! Checks first if username is right
+        #! USERNAME CHECK
         if user_dict[username_input]:
             user_login_info = user_dict[username_input]
             #! Then confirms password
