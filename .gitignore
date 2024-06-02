@@ -1,2 +1,6 @@
+
+# ignore Folders
 day_zero_env/
-launcher/
+
+# Ignore Modules
+pptx_zip_converter.py
