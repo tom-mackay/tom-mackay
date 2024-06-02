@@ -4,6 +4,14 @@ import os
 import logging
 from Login_Validate import validate_login_func
 
+if os.access('output.log', os.W_OK):
+    logging.basicConfig(filename="output.log", level=logging.DEBUG)
+
+    logging.debug('This is a debug message')
+    logging.info('This is an informational message')
+    logging.warning('This is a warning message')
+    logging.error('This is an error message')
+    logging.critical('This is a critical error message')
 class LoginScreen(ttk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
