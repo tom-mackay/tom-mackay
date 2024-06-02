@@ -80,7 +80,7 @@ class LoginScreen(ttk.Frame):
         self.logininfo_button = ttk.Button(self.login_buttons_frame, text="Info", command=self.info_action, takefocus=False, style='Secondary.TButton')
         self.logininfo_button.grid(padx=20, row=0, column=0)
 
-        #& Signup Button
+
         #& self.signup_button = ttk.Button(self.login_canvas, text="Sign Up", takefocus=True, style='info.Link.TButton')
              
              
