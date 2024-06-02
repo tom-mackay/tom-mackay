@@ -10,20 +10,25 @@ def validate_login_func(username_input, password_input):
         with open('user_data.json', 'r') as user_data_file: #& Change the name at some point
             user_dict = json.load(user_data_file)
 
+
+
+
+
+
+
+
+
+
+
         #! ENCRYPTION/DECRYPTION
         try:
             #! Encryption of Data
             None
-            
-            
         except:
             #! SCYE1 Error
             print('SCYE1 Failed: Security Notice Filed')
             #& This spot here has quite of a lot of intersting possibility as a deterrent
             return False
-
-
-
 
         #! Checks first if username is right
         if user_dict[username_input]:

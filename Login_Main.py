@@ -15,6 +15,10 @@ from Login_Validate import validate_login_func
 #? Tamokai
 #*  David - #^Choose a color (I'm guessing youd want green) - you NEED the vscode extensions "colorful comments"
 
+#& This color is used to discuss possible development changes: Speicifically, this color will be used to start a development thread. 
+#& For example, I think we setup an automation that creates a thread on slack with the #& tag.This will make automated checks possible later.
+#& David if you want this color we can change it also.
+
 #^ Background Project - Ai Documentation Generation
 #^ We are going to be using docstrings and black formatting based on the standard documentation templates
 #^ to train an LLM to generate business documentation. This can be used to do validation and if we get a good model,
@@ -27,6 +31,12 @@ from Login_Validate import validate_login_func
 #^ Lets continue discussion like this in threads commenting downwards from here: (Continue to write in your color below, will keep yellow for breakdowns like this)
 # From 
     
+    
+    
+    
+    
+    
+#^ Code Start
     
 class LoginScreen(ttk.Frame):
     def __init__(self, master=None): 
@@ -75,6 +85,12 @@ class LoginScreen(ttk.Frame):
                        
                        
                      
+                                   
+                                   
+                                   
+                                   
+                                   
+                                   
                                         
     #def initializeUI(self):
         # #! Screen Setup
