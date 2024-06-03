@@ -1,14 +1,31 @@
 import numpy as np
+import glm
 
-class Triangle:
+class Cube:
     def __init__(self, app):
         self.app = app
         self.ctx = app.ctx
         self.vbo = self.get_vbo()
         self.shader_program = self.get_shader_program('default')
         self.vao = self.get_vao()
+        self.m_model = self.get_model_matrix()
+        self.on_init()
+        
+    def update(self):
+        m_model = glm.rotate(self.m_model, self.app.time, glm.vec3(0,1,0))
+        self.shader_program['m_model'].write(m_model)        
+        
+    def get_model_matrix(self):
+        m_model = glm.mat4()
+        return m_model
+        
+    def on_init(self):
+        self.shader_program['m_proj'].write(self.app.camera.m_proj)
+        self.shader_program['m_view'].write(self.app.camera.m_view)
+        self.shader_program['m_model'].write(self.m_model)
         
     def render(self):
+        self.update()
         self.vao.render()
         
     def destroy(self):
@@ -20,10 +37,28 @@ class Triangle:
         vao = self.ctx.vertex_array(self.shader_program, [(self.vbo, '3f', 'in_position')])
         return vao
         
-    def get_vertex_data(self):
-        vertex_data = [(-0.6, -0.8, 0.0), (0.6, -0.8, 0.0), (0.0, 0.8, 0.0)]
-        vertex_data = np.array(vertex_data, dtype='f4')
+    #! Builds the shape of the model
+    def get_vertex_data(self): 
+        
+        vertices = [
+                    (-1, -1, 1), (1, -1, 1), (1, 1, 1), (-1, 1, 1),   # Front face
+                    (-1, 1, -1), (-1, -1, -1), (1, -1, -1), (1, 1, -1)] # Back Face
+        
+        indices = [(0, 2, 3), (0, 1, 2),
+                   (1, 7, 2), (1, 6, 7),
+                   (6, 5, 4), (4, 7, 6),
+                   (3, 4, 5), (3, 5, 0),
+                   (3, 7, 4), (3, 2, 7),
+                   (0, 6, 1), (0, 5, 6)]
+        
+        vertex_data = self.get_data(vertices=vertices, indices=indices)
         return vertex_data
+    
+    @staticmethod
+    def get_data(vertices, indices):
+        data = [vertices[ind] for triangle in indices for ind in triangle]
+        flat_data = [component for vertex in data for component in vertex]
+        return np.array(flat_data, dtype='f4')
     
     def get_vbo(self):
         vertex_data = self.get_vertex_data()
