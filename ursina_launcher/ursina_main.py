@@ -19,12 +19,16 @@ ground1.collider = 'mesh'
 ground1.collider_info = MeshCollider(entity=ground1, mesh='quad')
 
 # Create a character entity
-character = Entity(model='cube', color=color.orange, position=(0, 1, 0), scale=(2, 5, 2))  # Adjust the model and color as needed
+character = Entity(model='obj_files\Character_Base.glb', color=color.orange, position=(0, 1, 0), scale=(2, 3, 2))  # Adjust the model and color as needed
+# Adjust the material properties of the character for a more solid look
+character.collider = 'box'  # Add a box collider to the character
+
+
 # Create an entity to act as the camera
 camera = Entity(parent=character, position=(0, 2, -5))  # Place the camera behind the character
 
 # Speed at which the character moves towards the target position
-move_speed = 0.02
+move_speed = 0.0125
 
 # Variable to keep track of the previous mouse state
 prev_mouse_state = False
