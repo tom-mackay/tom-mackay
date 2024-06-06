@@ -1,5 +1,6 @@
 from ursina import *
-from math import isclose
+#from math import isclosed
+from direct.actor.Actor import Actor
 
 app = Ursina()
 
@@ -18,14 +19,15 @@ ground1 = Entity(
 ground1.collider = 'mesh'
 ground1.collider_info = MeshCollider(entity=ground1, mesh='quad')
 
-# Create a character entity
-character = Entity(model='obj_files\Character_Base.glb', color=color.orange, position=(0, 1, 0), scale=(2, 3, 2))  # Adjust the model and color as needed
-# Adjust the material properties of the character for a more solid look
-character.collider = 'box'  # Add a box collider to the character
+model_path = 'animations/BASEmodel_walk.gltf'
+character = Entity(scale=(2,3,2))
 
+actor = Actor(model_path)
+actor.reparentTo(character)
+actor.loop('standard_walk_mixamo')
 
 # Create an entity to act as the camera
-camera = Entity(parent=character, position=(0, 2, -5))  # Place the camera behind the character
+#camera = Entity(parent=character, position=(0, 2, -5))  # Place the camera behind the character
 
 # Speed at which the character moves towards the target position
 move_speed = 0.0125
@@ -52,14 +54,26 @@ def update():
 
     if is_moving:
         character.position = lerp(character.position, target_position, move_speed)
-        if distance(character.position, target_position) < 0.1:  # Check if the character is close enough to the target
+        if distance(character.position, target_position) < 0.5:  # Check if the character is close enough to the target
             target_position = None
             prev_mouse_state = False  # Reset prev_mouse_state after the character has reached the target position
             is_moving = False
+            actor.stop('standard_walk_mixamo') 
+        else:
+            if not actor.getCurrentAnim():  # Start the animation if it is not currently playing
+                actor.loop('standard_walk_mixamo')
+    else:
+        actor.stop('standard_walk_mixamo') 
+            
+    
 
     prev_mouse_state = mouse.left
 
     
+
+
+
+
 
 # Add an editor camera for better control
 EditorCamera()
