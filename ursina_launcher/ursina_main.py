@@ -1,6 +1,6 @@
 from ursina import *
-#from math import isclosed
 from direct.actor.Actor import Actor
+from math import atan2, pi
 
 app = Ursina()
 
@@ -19,15 +19,16 @@ ground1 = Entity(
 ground1.collider = 'mesh'
 ground1.collider_info = MeshCollider(entity=ground1, mesh='quad')
 
-model_path = 'animations/BASEmodel_walk.gltf'
-character = Entity(scale=(2,3,2))
+# Load the model for the character
+#odel_path = 'animations/BASEmodel_walk.gltf'
+model_path = 'animations/BASEmodel.glb'
+character = Entity(scale=(2, 3, 2))
 
+# Load the actor for the character animation
 actor = Actor(model_path)
 actor.reparentTo(character)
-actor.loop('standard_walk_mixamo')
-
-# Create an entity to act as the camera
-#camera = Entity(parent=character, position=(0, 2, -5))  # Place the camera behind the character
+# actor.loop('standard_walk')
+# actor.loop('standing_idle')
 
 # Speed at which the character moves towards the target position
 move_speed = 0.0125
@@ -43,13 +44,26 @@ is_moving = False
 def distance(a, b):
     return (a - b).length()
 
+def look_away(entity):
+    entity.rotation_y += 180  # Rotate 180 degrees
+
 def update():
     global prev_mouse_state, is_moving, target_position
     if mouse.left and not prev_mouse_state:
         if mouse.hovered_entity == ground1:
             print("Moving character to:", mouse.world_point)
             target_position = mouse.world_point
+            character.look_at(target_position)  # Rotate the character to face the target position
+            # Determine the direction the character is moving in
+            movement_direction = mouse.world_point - character.position
+            movement_direction.y = 0  # Ensure the character stays on the ground
+
+            # Calculate the target position based on the movement direction
+            target_position = character.position + movement_direction
+
+            look_away(character)  # Make the character look away
             is_moving = True
+            actor.loop('standard_walk')
         prev_mouse_state = True  # Set to True only when a new click is detected
 
     if is_moving:
@@ -58,22 +72,17 @@ def update():
             target_position = None
             prev_mouse_state = False  # Reset prev_mouse_state after the character has reached the target position
             is_moving = False
-            actor.stop('standard_walk_mixamo') 
+            #actor.stop('standard_walk') 
+            
         else:
             if not actor.getCurrentAnim():  # Start the animation if it is not currently playing
-                actor.loop('standard_walk_mixamo')
+                actor.stop('standing_idle')
+                actor.loop('standard_walk')
     else:
-        actor.stop('standard_walk_mixamo') 
-            
-    
-
+        #actor.stop('standard_walk') 
+        actor.loop('standing_idle')
+        None
     prev_mouse_state = mouse.left
-
-    
-
-
-
-
 
 # Add an editor camera for better control
 EditorCamera()
