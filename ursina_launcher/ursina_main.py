@@ -14,16 +14,13 @@ ground1 = Entity(
     scale=(100, 1, 100),  # Extend the scale along the x-axis to connect with the second entity
     position=(0, 0, 0)
 )
-
 # Create a MeshCollider for the ground entity
 ground1.collider = 'mesh'
 ground1.collider_info = MeshCollider(entity=ground1, mesh='quad')
 
-# Load the model for the character
-#odel_path = 'animations/BASEmodel_walk.gltf'
+# Character Model and Animation Paths
 model_path = 'animations/BASEmodel.glb'
 character = Entity(scale=(2, 3, 2))
-
 # Load the actor for the character animation
 actor = Actor(model_path)
 actor.reparentTo(character)
@@ -32,13 +29,10 @@ actor.reparentTo(character)
 
 # Speed at which the character moves towards the target position
 move_speed = 0.0125
-
 # Variable to keep track of the previous mouse state
 prev_mouse_state = False
-
 # Target position for the character to move to
 target_position = None
-
 is_moving = False
 
 def distance(a, b):
@@ -68,11 +62,10 @@ def update():
 
     if is_moving:
         character.position = lerp(character.position, target_position, move_speed)
-        if distance(character.position, target_position) < 0.5:  # Check if the character is close enough to the target
+        if distance(character.position, target_position) < 3.0:  # Check if the character is close enough to the target
             target_position = None
             prev_mouse_state = False  # Reset prev_mouse_state after the character has reached the target position
             is_moving = False
-            #actor.stop('standard_walk') 
             
         else:
             if not actor.getCurrentAnim():  # Start the animation if it is not currently playing
