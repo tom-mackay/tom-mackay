@@ -1,16 +1,14 @@
 {
     "jalavuk": {
-        "user_fname": "James",
-        "user_lname": "Alavuk",
-        "password": "devcomp1",
-        "permissions": "developer"
+        "user_fname": "gAAAAABmXNbDltoumbaUXtUrFwIwFD--3p4r7Rk4aya5uAypd3JpovB9zobTTy2cj2J0LxSJ1ZdpLsNsZWNkemI_9P3qgss4Ug==",
+        "user_lname": "gAAAAABmXNbD75ek4PyNAdzaGl2Liao3pRJtByl5lVNedZrzpZ-C6rzH1uy0lq_jqzEgW6zwNd1BuzU_8NYd3k6KC2HqS7Nv7A==",
+        "password": "gAAAAABmXNbDOU-9aCpe-XQR2bpHOoFrrBBbWmT-6ZQwM5kxRGgF4n_PcLchlCxyv_p1kVip9mcOvjvlS8TKvU1F6tREQXsHtnRNjNZd3jZNd3DpxzH8wMo=",
+        "permissions": "gAAAAABmXNbD7hbqwOWSnRtKY3oM9DDbHQq1DNylDJI63JK64WEiFG2sJccOBVePbkWAfUwjLNSs-Mh4L1Tde7IHYqjEYlGqEQ=="
     },
-
     "tkupe": {
-        "user_fname": "Tamokai",
-        "user_lname": "Alavuk",
-        "password": "devcomp2",
-        "permissions": "developer"
-    } 
-   
+        "user_fname": "gAAAAABmXNbDhoRhI946vPUbAsRB-n8B1W-X2f6HEf71SNdpp9PPXPKh2QD-Tf8wAlwXphWVkycOyLjXZjrieJYtKTh15yvY_w==",
+        "user_lname": "gAAAAABmXNbDPjWMllUlxYEpEg5D96wblnMGZrKuiTQvNNXBqUy214E1wIR0o3_IShqd1t8bY-DKUXS4iWBw-htLzowxDiyr1w==",
+        "password": "gAAAAABmXNbDw1fsKvrgmVQ15kd14-ADUAtwtl7iVxem_EwW4KXSITB9YbaL7531B0hhVPHuAspM0o9BC6mc6dQV7NFvYafToJlXol7c8iKEWvftvea4U9g=",
+        "permissions": "gAAAAABmXNbDscsdDOhfv5nidzI0DE9oOwOyCyNm6vID-VQk04EjX2lo6vId_VTfd4C7cHF2Z4jjodD159gA85L1S9qvNO8Udg=="
+    }
 }
