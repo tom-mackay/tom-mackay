@@ -14,21 +14,18 @@ def validate_login_func(username_input, password_input):
 
 
 
+        # #! ENCRYPTION/DECRYPTION - IGNORE FOR NOW
+        # try:
+        #     #! Encryption of Data
+        #     None
+        # except:
+        #     #! SCYE1 Error
+        #     print('SCYE1 Failed: Security Notice Filed')
+        #     #& This spot here has quite of a lot of intersting possibility as a deterrent
+        #     return False # IGNORE UNTIL HERE
 
 
 
-
-
-
-        #! ENCRYPTION/DECRYPTION
-        try:
-            #! Encryption of Data
-            None
-        except:
-            #! SCYE1 Error
-            print('SCYE1 Failed: Security Notice Filed')
-            #& This spot here has quite of a lot of intersting possibility as a deterrent
-            return False
 
         #! Checks first if username is right
         if user_dict[username_input]:

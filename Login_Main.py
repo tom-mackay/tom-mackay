@@ -43,11 +43,13 @@ class LoginScreen(ttk.Frame):
     #! Parent __Init__, Runs First (initializes core functions)
     def __init__(self, master=None): 
         
+        #! ^ Initializes First (Functions/CLasses/Objects can be loaded here)
+        
         #! CHILD INIT STARTS HERE
         super().__init__(master)
         #! This is a child ("super()."") __init__() (instance and is run AFTER __init__), it can allow us to run 
-        #! setup functions in an order in try loops to catch and document errors at specific stages in the app.
         
+        #! setup functions in an order in try loops to catch and document errors at specific stages in the app.
         #! Initializing Logging
         self.initialize_Logging()
         #! Launch Login GUI
@@ -95,6 +97,8 @@ class LoginScreen(ttk.Frame):
             print(f"Failed to initialize logging: {e}") #& Make Log Error
             return False #& I Think its better to not 
                        
+         
+         
          
     #! Launch GUI                                      
     def initializeUI(self, master):
@@ -177,23 +181,7 @@ class LoginScreen(ttk.Frame):
 
 
 
-
-
-
-
-
-        # #& Signup Button
-        # self.signup_button = ttk.Button(self.signup_button_frame, text="¿ Que, no bitches ?", takefocus=False, style='info.Link.TButton')
-        # self.signup_button.grid(padx=0, pady=0, row=1, column=0)
-        # self.signup_lbl = ttk.Label(self.signup_button_frame, text="¿ Que, no bitches ?", takefocus=False)
-        # self.signup_lbl.grid(padx=0, pady=0, row=1, column=0)   
-        # # Spacer
-        # self.spacer6 = ttk.Label(self.main_login_screen, text="")
-        # self.spacer6.pack(anchor="se", padx=0, pady=10)
-        # #Spacer
-        # #& self.signup_button = ttk.Button(self.login_canvas, text="Sign Up", takefocus=True, style='info.Link.TButton')
-             
-             
+            
              
              
              
