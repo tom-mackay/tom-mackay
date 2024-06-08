@@ -1,8 +1,8 @@
 
 # Files to ignore
-Login_SCYE1.py
-Login_UPE1.py
-Login_UPK.py
+# Login_SCYE1.py
+# Login_UPE1.py
+# Login_UPK.py
 
 # JSONs to Ignore
 scye1_config.json
