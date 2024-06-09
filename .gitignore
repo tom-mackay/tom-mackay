@@ -4,12 +4,9 @@
 # Login_UPE1.py
 # Login_UPK.py
 
-# JSONs to Ignore
-scye1_config.json
-
 # Folders to Ignore 
 day_zero_env/
 system_logs/
 
 # Python Cache
-__pycache__
+#__pycache__
