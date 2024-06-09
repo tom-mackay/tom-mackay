@@ -94,16 +94,18 @@ class LoginScreen(ttk.Frame):
                                 ])
             # Create a logger instance
             self.logger = logging.getLogger(__name__)
+            logging.info("<LOGIN MAIN> Log Initialized Successfully")
             return True
+        
         except Exception as e:
-            print(f"Failed to initialize logging: {e}") #& Make Log Error
-            return False #& I Think its better to not 
+            raise ValueError(f"Log Initialization Failed: {e}")
                        
          
          
          
     #! Launch GUI                                      
     def initializeUI(self, master):
+        logging.info("<LOGIN MAIN> Starting Brisbane Columbia GUI")
         #! Screen Setup
         self.main_login_screen = master
         self.main_login_screen.title("Initialize User")
@@ -180,6 +182,7 @@ class LoginScreen(ttk.Frame):
         #? Frame for Signup Buttons 
         self.signup_button_frame = ttk.Frame(self.main_login_screen)
         self.signup_button_frame.pack(anchor="se")          #? Aight so turns out this anchor uses cardinal directions fyi 
+        logging.info("<LOGIN MAIN> All Widgets Loaded Successfully")
 
 
 
@@ -198,7 +201,7 @@ class LoginScreen(ttk.Frame):
         #print(self.user_input_value)
         self.password_input_value = self.password_input.get()
         #print(self.password_input_value)
-        validation_status = validate_login_func(self.user_input_value, self.password_input_value)
+        validation_status = validate_login_func(self, self.user_input_value, self.password_input_value)
         #print(login_validation_status)
         
         if validation_status:

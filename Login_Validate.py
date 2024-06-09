@@ -1,11 +1,15 @@
 import json
 import os
+import logging
 #& We could move this to a setup config also to mask Whats being imported
 from Login_SCYE1 import DictionaryEncryptor
 
-def validate_login_func(username_input, password_input):
+def validate_login_func(self, username_input, password_input):
+    
+    self.logger = logging.getLogger(__name__)
     
     try:
+        logging.info("<LOGIN VALIDATE> Commecing User Login Validation Process")
         #& This will likely be an api call to microsoft power platforms flows
         #! Assuming 'user_data.json' contains JSON data
         with open('user_data.json', 'r') as user_data_file: #& Change the name at some point
@@ -31,16 +35,14 @@ def validate_login_func(username_input, password_input):
                 #print(decrypted_user_data)
                 decrption_flag = True
                 print("Decryption Successful")
-                
         except:
-            print("Encryption Process Failed")
+            print("Encryption/Decryption Process Failed")
             decrption_flag = False
                 
         if decrption_flag:
             #! Checks first if username is right - Step 3
             if decrypted_user_data[username_input]:
                 user_login_info = decrypted_user_data[username_input]
-                print(user_login_info)
                 #! Then confirms password
                 if user_login_info["password"] == password_input:
                     return True
@@ -50,6 +52,6 @@ def validate_login_func(username_input, password_input):
             print("User data decryption failed")
     
     except Exception as e:
-        print(e)
+        logging.error(f"<LOGIN VALIDATE> Validation Process Failed")
         return False
     
