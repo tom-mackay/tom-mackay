@@ -1,44 +1,58 @@
-import pandas as pd
-import pathlib
-import textwrap
-import google.generativeai as genai
-from IPython.display import display
-from IPython.display import Markdown
 import os
-#from google.cloud import aiplatform
+import json
+from groq import Groq
 
 class LLM_Manager:
-    def __init__(self, relative_path = None):
+    def __init__(self, relative_path=None):
         
-        print(relative_path)
-        if relative_path:
-            os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = relative_path
-            # Initialize the API client
-            self.client = genai.Client()
-        else:
-            print("Google AI API Credential Validation Failed")
-            return False
-            
-    def generate_text(self, model, prompt, max_tokens):
-        # Generate text
-        response = self.client.generate(
-            model=model,
-            prompt=prompt,
-            max_tokens=max_tokens
+        self.config = self.load_config(relative_path)
+        # print(self.config)
+        self.groq_key = self.load_api_key(self.config)
+        self.client = Groq(api_key=self.groq_key)
+        
+    def make_ai_request(self, client, request_message):
+        completion = client.chat.completions.create(
+            model="llama3-70b-8192",
+            messages=[
+                {
+                    "role": "user",
+                    "content": f"{request_message}"
+                }
+            ],
+            temperature=1,
+            max_tokens=1024,
+            top_p=1,
+            stream=True,
+            stop=None,
         )
-        # Print the generated text
-        print(response['choices'][0]['text'])
+        return completion
+            
+    #& Might be worth moving this to Login_Main.py
+    def load_config(self, file_path):
+        with open(file_path, 'r') as file:
+            config = json.load(file)
+        return config
+    
+    def load_api_key(self, config):
+        #! Create environment variable 
+        os.environ['groq_api_key'] = config["groq_api_key"]
+        #! Try to load API key from environment variable
+        api_key = os.getenv('groq_api_key')
+        if api_key:
+            return api_key
 
-        
 
 
 
 
-if __name__ =='__main__':
-    path_to_credentials = r"C:\Users\enjam\OD01\scye1_truths\root-truth-425919-k5-a1fb467be1e8.json"
-    LLM_Manager(path_to_credentials)
-    LLM_Manager.generate_text(
-        model="text-davinci-003",
-        prompt="Once upon a time in a magical forest,",
-        max_tokens=50
-    )
+
+
+
+if __name__ == '__main__':
+    
+    path_to_credentials = r"C:\Users\enjam\OD01\scye1_truths\environment_variables.json"
+    llm_manager = LLM_Manager(path_to_credentials)
+    completion = llm_manager.make_ai_request(llm_manager.client, "Can you help me?")
+    #& This needs to be in a specific place
+    for chunk in completion:
+        print(chunk.choices[0].delta.content or "", end="")
