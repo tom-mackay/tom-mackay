@@ -5,6 +5,8 @@ import logging
 from datetime import datetime
 from Login_Validate import validate_login_func
     
+#^ This is the color for Coding Block Headings and Narration
+    
 #^ START READING HERE: 
 #! From James
 #^ If you're not seeing color when reading this, install the vscode extension colorful comments.
@@ -62,10 +64,11 @@ class LoginScreen(ttk.Frame):
         
         
         
-        
-    #! PARENT INIT STARTS HERE - Notice how these functions are aligned with the parent __init__ class***
+    #^ Login Initialization Function
+    #! PARENT INIT STARTS HERE - Notice how these functions are aligned with the parent __init__ class
     def initialize_Logging(self):
-        #! Try Loop to Attempt Logging       
+        #! Try Loop to Attempt Logging  
+        #^ Attempt to generate log file, check for and create system logs files if file does not exist.     
         try:
             #! Generate the timestamp
             timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
@@ -96,7 +99,6 @@ class LoginScreen(ttk.Frame):
             self.logger = logging.getLogger(__name__)
             logging.info("<LOGIN MAIN> Log Initialized Successfully")
             return True
-        
         except Exception as e:
             raise ValueError(f"Log Initialization Failed: {e}")
                        

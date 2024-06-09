@@ -7,6 +7,7 @@ def validate_login_func(self, username_input, password_input):
     
     self.logger = logging.getLogger(__name__)
     
+    #^ Try loop for Whole Validation Process
     try:
         logging.info("<LOGIN VALIDATE> Commencing User Login Validation Process")
         #& This will likely be an api call to microsoft power platforms flows
