@@ -1,9 +1,7 @@
 import json
 import os
 #& We could move this to a setup config also to mask Whats being imported
-# from Login_UPE1 import UniqueENC1
-# from Login_UPK import URPK_method
-from Login_SCYE1 import UniqueSCYE1
+from Login_SCYE1 import DictionaryEncryptor
 
 def validate_login_func(username_input, password_input):
     
@@ -13,37 +11,45 @@ def validate_login_func(username_input, password_input):
         with open('user_data.json', 'r') as user_data_file: #& Change the name at some point
             user_dict = json.load(user_data_file)
             
-        #! SCYE1 Config Stream - Collection of Variables First
-        try:
-            #! Collect Required Variables
-            with open("scye1_config.json") as scye_config:
-                syce_dict = json.load(scye_config)
-            enc1_resonator = syce_dict["pc-scye1"]
-        except:
-            print("SCYE1 Variables Failed to Collect")
-            return False
-
-        #! ENCRYPTION/DECRYPTION - Step 2
-        try:
-            #! Encryption of Data
-            None
+        #! Encryption Information Required to Encrypt
+        salt = b'\x02\xf4\x1b\xdd=\x04\x96j\x12.\x1e\xc5=~\xe6\xb2'
+        passphrase = "isnt this cool and fresh"
+        encryptor = DictionaryEncryptor(passphrase, salt) #! Initialize encryptor with both passphrase and salt to set the parameters for encryption
+        encryption_flag = False
+        decrption_flag = False
             
+        try:
+            if encryption_flag:
+                encrypted_user_data = encryptor.encrypt(user_dict)
+                print(encrypted_user_data)
+                with open('user_data.json', 'w') as enc_user_data:
+                    json.dump(encrypted_user_data, enc_user_data, indent=4)
+                print("Encyrption Sucessfull")
+                
+            else:
+                decrypted_user_data = encryptor.decrypt(user_dict)
+                #print(decrypted_user_data)
+                decrption_flag = True
+                print("Decryption Successful")
+                
         except:
-            #! SCYE1 Error
-            print('SCYE1 Failed: Security Notice Filed')
-            #& This spot here has quite of a lot of intersting possibility as a deterrent
-            return False # IGNORE UNTIL HERE
-
-        #! Checks first if username is right - Step 3
-        if user_dict[username_input]:
-            user_login_info = user_dict[username_input]
-            
-            #! Then confirms password
-            if user_login_info["password"] == password_input:
-                return True
+            print("Encryption Process Failed")
+            decrption_flag = False
+                
+        if decrption_flag:
+            #! Checks first if username is right - Step 3
+            if decrypted_user_data[username_input]:
+                user_login_info = decrypted_user_data[username_input]
+                print(user_login_info)
+                #! Then confirms password
+                if user_login_info["password"] == password_input:
+                    return True
+            else:
+                return False
         else:
-            return False
+            print("User data decryption failed")
     
-    except:
+    except Exception as e:
+        print(e)
         return False
     

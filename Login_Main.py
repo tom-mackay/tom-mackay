@@ -61,6 +61,8 @@ class LoginScreen(ttk.Frame):
         
         
         
+        
+        
     #! PARENT INIT STARTS HERE - Notice how these functions are aligned with the parent __init__ class***
     def initialize_Logging(self):
         #! Try Loop to Attempt Logging       
@@ -201,6 +203,7 @@ class LoginScreen(ttk.Frame):
         
         if validation_status:
             print("Login Successful")
+            #! Start the program
         else:
             print("Login Failed, Check Credentials")
 
