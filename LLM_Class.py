@@ -47,12 +47,12 @@ class LLM_Manager:
 
 
 
-
+#! See below for testing
 if __name__ == '__main__':
-    
-    path_to_credentials = r"C:\Users\enjam\OD01\scye1_truths\environment_variables.json"
-    llm_manager = LLM_Manager(path_to_credentials)
-    completion = llm_manager.make_ai_request(llm_manager.client, "Can you help me?")
-    #& This needs to be in a specific place
+    #! How to use LLM Class
+    path_to_credentials = r"C:\Users\enjam\OD01\scye1_truths\environment_variables.json" #& This should be encypted in the user data
+    llm_manager = LLM_Manager(path_to_credentials) #! Pass the environment variables to the class to intialize the correct API extraction
+    completion = llm_manager.make_ai_request(llm_manager.client, "Can you help me?") #& This will be built into a user interface with 3D Avatar (Still in development)
+    #! Code below to read the completion - Prints the AIs response
     for chunk in completion:
         print(chunk.choices[0].delta.content or "", end="")
