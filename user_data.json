@@ -1,14 +1,14 @@
 {
     "jalavuk": {
-        "user_fname": "gAAAAABmXNbDltoumbaUXtUrFwIwFD--3p4r7Rk4aya5uAypd3JpovB9zobTTy2cj2J0LxSJ1ZdpLsNsZWNkemI_9P3qgss4Ug==",
-        "user_lname": "gAAAAABmXNbD75ek4PyNAdzaGl2Liao3pRJtByl5lVNedZrzpZ-C6rzH1uy0lq_jqzEgW6zwNd1BuzU_8NYd3k6KC2HqS7Nv7A==",
-        "password": "gAAAAABmXNbDOU-9aCpe-XQR2bpHOoFrrBBbWmT-6ZQwM5kxRGgF4n_PcLchlCxyv_p1kVip9mcOvjvlS8TKvU1F6tREQXsHtnRNjNZd3jZNd3DpxzH8wMo=",
-        "permissions": "gAAAAABmXNbD7hbqwOWSnRtKY3oM9DDbHQq1DNylDJI63JK64WEiFG2sJccOBVePbkWAfUwjLNSs-Mh4L1Tde7IHYqjEYlGqEQ=="
+        "user_fname": "James",
+        "user_lname": "Alavuk",
+        "password": "admin",
+        "permissions": "dev"
     },
     "tkupe": {
         "user_fname": "Tamokai",
         "user_lname": "Kupenga",
-        "password": "Admin",
-        "permissions": "Dev"
+        "password": "admin",
+        "permissions": "dev"
     }
 }
