@@ -3,6 +3,10 @@ from openai import OpenAI
 import base64
 import requests
 
+
+#& Build this into a class model once main screen development begins
+#& NOTE: Image files need to be Base64 encoded -> Need a tutorial -> https://
+
 # Point to the local server
 client = OpenAI(base_url="http://localhost:1234/v1", api_key="lm-studio")
 
@@ -46,4 +50,5 @@ for chunk in completion:
   if chunk.choices[0].delta.content:
     print(chunk.choices[0].delta.content, end="", flush=True)
     
-    # https://www.youtube.com/watch?v=cngAfCdM0xo
+#! https://www.youtube.com/watch?v=cngAfCdM0xo
+#! Watched this video
