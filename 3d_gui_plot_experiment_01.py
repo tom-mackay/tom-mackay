@@ -1,9 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QHBoxLayout
 from PyQt5.QtWebEngineWidgets import QWebEngineView
-from PyQt5.QtQuick import QQuickView
-from PyQt5.QtQml import QQmlEngine, QQmlComponent
-from PyQt5.QtCore import QUrl, Qt
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
