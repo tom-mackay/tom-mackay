@@ -1,6 +1,8 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget
 from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt5.QtQuick import QQuickView
+from PyQt5.QtQml import QQmlEngine, QQmlComponent
 from PyQt5.QtCore import QUrl, Qt
 import dash
 import dash_core_components as dcc
@@ -9,6 +11,8 @@ import plotly.graph_objects as go
 from threading import Thread
 import time
 import numpy as np
+import assimp
+import assimppy
 
 # Function to run the Dash app
 def run_dash():
@@ -21,29 +25,19 @@ app = dash.Dash(__name__)
 
 
 
-# Load the OBJ file and extract vertices
-with open('BASEmodel.obj', 'r') as f:
-    lines = f.readlines()
-vertices = []
-for line in lines:
-    parts = line.strip().split(' ')
-    if parts[0] == 'v':
-        vertex = [float(parts[1]), float(parts[2]), float(parts[3])]
-        vertices.append(vertex)
-vertices = np.array(vertices)
+def load_obj_file(filename):
+    scene = assimppy.load(filename)
+    mesh = scene.meshes[0]  # Assuming there is only one mesh in the scene
 
-obj_trace = go.Scatter3d(
-    x=vertices[:, 0],
-    y=vertices[:, 1],
-    z=vertices[:, 2],
-    mode='markers',
-    marker=dict(
-        size=1,
-        color='blue',
-    ),
-)
-# Create the figure
-fig = go.Figure(data=[obj_trace])
+    # Extract the vertex data from the mesh
+    vertices = []
+    for i in range(mesh.num_vertices):
+        vertex = [mesh.vertices[i][0], mesh.vertices[i][1], mesh.vertices[i][2]]
+        vertices.append(vertex)
+
+    return vertices
+
+
 
 
 # Define parallel traces
