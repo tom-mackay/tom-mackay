@@ -1,6 +1,8 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QHBoxLayout
 from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt5.QtQuick import QQuickView
+from PyQt5.QtQml import QQmlEngine, QQmlComponent
 from PyQt5.QtCore import QUrl, Qt
 import dash
 import dash_core_components as dcc
@@ -18,65 +20,36 @@ def run_dash():
 app = dash.Dash(__name__)
 
 
-
-
-
-# Load the OBJ file and extract vertices
-with open('BASEmodel.obj', 'r') as f:
-    lines = f.readlines()
-vertices = []
-for line in lines:
-    parts = line.strip().split(' ')
-    if parts[0] == 'v':
-        vertex = [float(parts[1]), float(parts[2]), float(parts[3])]
-        vertices.append(vertex)
-vertices = np.array(vertices)
-
-obj_trace = go.Scatter3d(
-    x=vertices[:, 0],
-    y=vertices[:, 1],
-    z=vertices[:, 2],
-    mode='markers',
-    marker=dict(
-        size=1,
-        color='blue',
-    ),
-)
-# Create the figure
-fig = go.Figure(data=[obj_trace])
-
-
 # Define parallel traces
-# trace1 = go.Scatter3d(
-#     x=[1, 2, 3, 4, 5],
-#     y=[0, 0, 0, 0, 0],
-#     z=[10, 11, 12, 13, 14],
-#     mode='markers+lines',
-#     marker=dict(size=5, color='red'),
-#     line=dict(width=2, color='red'),
-#     name="Test Trace 01"
-# )
-# trace2 = go.Scatter3d(
-#     x=[1, 2, 3, 4, 5],
-#     y=[1, 1, 1, 1, 1],
-#     z=[10, 11, 12, 13, 14],
-#     mode='markers+lines',
-#     marker=dict(size=5, color='blue'),
-#     line=dict(width=2, color='blue'),
-#     name="Test Trace 02"
-# )
-# trace3 = go.Scatter3d(
-#     x=[1, 2, 3, 4, 5],
-#     y=[2, 2, 2, 2, 2],
-#     z=[10, 11, 12, 13, 14],
-#     mode='markers+lines',
-#     marker=dict(size=5, color='green'),
-#     line=dict(width=2, color='green'),
-#     name="Test Trace 03"
-# )
+trace1 = go.Scatter3d(
+    x=[1, 2, 3, 4, 5],
+    y=[0, 0, 0, 0, 0],
+    z=[10, 11, 12, 13, 14],
+    mode='markers+lines',
+    marker=dict(size=5, color='red'),
+    line=dict(width=2, color='red'),
+    name="Test Trace 01"
+)
+trace2 = go.Scatter3d(
+    x=[1, 2, 3, 4, 5],
+    y=[1, 1, 1, 1, 1],
+    z=[10, 11, 12, 13, 14],
+    mode='markers+lines',
+    marker=dict(size=5, color='blue'),
+    line=dict(width=2, color='blue'),
+    name="Test Trace 02"
+)
+trace3 = go.Scatter3d(
+    x=[1, 2, 3, 4, 5],
+    y=[2, 2, 2, 2, 2],
+    z=[10, 11, 12, 13, 14],
+    mode='markers+lines',
+    marker=dict(size=5, color='green'),
+    line=dict(width=2, color='green'),
+    name="Test Trace 03"
+)
 # Create the figure and add the traces
-# fig = go.Figure(data=[trace1, trace2, trace3])
-
+fig = go.Figure(data=[trace1, trace2, trace3])
 
 fig.update_layout(
     scene=dict(aspectmode='manual', aspectratio=dict(x=1, y=1, z=1)),
@@ -142,14 +115,17 @@ class MainWindow(QMainWindow):
         self.browser = QWebEngineView()
         self.browser.setUrl(QUrl("http://127.0.0.1:8050"))
         self.browser.setFixedSize(600, 450)
-
-
-        # Set the layout
-        layout = QVBoxLayout()
+    
+        # Create a QHBoxLayout and add the widgets
+        layout = QHBoxLayout()
         layout.addWidget(self.browser)
-        container = QWidget()
-        container.setLayout(layout)
-        self.setCentralWidget(container)
+        # Add Another central_widget
+        #layout.addWidget(self.obj_widget)
+
+        # Create a central widget and set the layout
+        central_widget = QWidget()
+        central_widget.setLayout(layout)
+        self.setCentralWidget(central_widget)
 
 # Run the PyQt5 application
 app = QApplication(sys.argv)
